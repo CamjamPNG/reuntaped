@@ -3,12 +3,13 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Retaped</title>
+    <title>NonRetaped</title>
 </head>
 
 <body>
-    <h1>Retaped</h1>
-    <h4>The revolt.chat client re-taped from the one that's held together by duct tape and bad code</h4>
+    <h1>NonRetaped</h1>
+    <h4>The revolt.chat client re-taped from the one that's held together by duct tape and bad code (private use lulw)</h4>
+	<h3> 
     <br />
     <div id="loginoe">
         <input id="token" alt="aaa" placeholder="Token">
@@ -99,8 +100,8 @@
                     <h5 id = "${i}msg" > message</h5 ></div>`
             }
             var theme
-            thetoken = "Token" //document.getElementById("token").value;
-            thechannel = "01F7ZSBSFHCAAJQ92ZGTY67HMN"//document.getElementById("channel").value;
+			thetoken = document.getElementById("token").value;
+            thechannel = document.getElementById("channel").value;
             document.getElementById("loginoe").hidden = true;
             document.getElementById("logged").hidden = false;
             //if (!document.getElementById("inputTheme").value == '') { document.cookie = `theme=${document.getElementById("inputTheme").value};` }
@@ -108,7 +109,7 @@
             theme = document.getElementById("inputTheme").value
             document.getElementById("theme").innerHTML = theme;
             getmessage();
-            while (1) { await sleep(1000); getmessage() }
+            while (1) { await sleep(10000); getmessage() }
         }
 
         async function sendmessage() {
