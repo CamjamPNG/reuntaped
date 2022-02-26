@@ -3,47 +3,58 @@
 
 <head>
     <meta charset="utf-8">
-    <title>NonRetaped</title>
+    <title>Reuptaped</title>
 </head>
 
 <body>
-    <h1>NonRetaped</h1>
-    <h4>The revolt.chat client re-taped from the one that's held together by duct tape and bad code (private use lulw)</h4>
-	<h3> 
+    <h1 style="text-align: center;"><span style="font-family: Arial, Helvetica, sans-serif;">Reuntaped</span></h1>
+    <h4 style="text-align: center;"><span style="font-family: Arial, Helvetica, sans-serif;">The revolt.chat client re-taped and then uptaped from the one that&apos;s ripped apart from bad code!</h4>
+	<p style="text-align: center;"><a href="http://This is a fork of retaped (click to see)"><span style="font-family: Arial, Helvetica, sans-serif;">This is a fork of retaped (click to see)</span></a></p>
+	<p style="text-align: center;"><a href="https://dorudolasu.neocities.org/reduct/index.html"></a><span style="font-family: Arial, Helvetica, sans-serif;"><a href="https://dorudolasu.neocities.org/reduct/index.html">This is a fork of a fork, the og is reduct (click to check out)</a></span></p>
+	<p style="text-align: center;"><span style="font-family: Arial, Helvetica, sans-serif;">By @Camjam</span></p>
+	<hr>
     <br />
     <div id="loginoe">
         <input id="token" alt="aaa" placeholder="Token">
         <br><input id="channel" placeholder="Channel ID">
+        <br><input id="server" placeholder="Server ID">
+        <br><input id="refresh" placeholder="Refresh time (default 7 sec)">
         <br><input id="inputTheme" placeholder="Theme">
-        <br><button onclick="login()">ok</button>
+        <br><button onclick="login();">ok</button>
         <br /><br /><br />
     </div>
     <div id="logged" hidden="true">
         <button onclick="getmessage()">Get messages</button>
         <button onclick="embedmessage()">Send embed</button>
         <br>
-        <input type="text" style="width: 90%;" autocomplete="off" placeholder="Title" id="title" hidden="true" />
-        <input type="text" style="width: 90%;" autocomplete="off" placeholder="Description" id="desc" hidden="true" />
-        <input type="text" style="width: 90%;" autocomplete="off" placeholder="Color" id="color" hidden="true" />
-        <button onclick="contentToJson()">JSON</button>
-        <input type="text" style="width: 90%;" autocomplete="off" placeholder="Speak in channel" id="a" />
+        <input type="text" style="width: 100% text-align: center;;" autocomplete="off" placeholder="Title" id="title" hidden="true" />
+        <input type="text" style="width: 100% text-align: center;;" autocomplete="off" placeholder="Description" id="desc" hidden="true" />
+        <input type="text" style="width: 100% text-align: center;;" autocomplete="off" placeholder="Color" id="color" hidden="true" />
+        <input type="text" style="width: 100%; text-align: center;" autocomplete="off" placeholder="Speak in channel" id="a" />
         <button onclick="sendmessage()">Send</button>
         <br>
+		<hr>
     </div>
     <h2 id="theme"></h2>
     <br />
+    <div id="channels"></div>
+	<br>
+	<hr>
+	<br>
     <div id="messages" hidden="true">
     </div>
 
     <style>
         .message {
             display: inline
+			text-align: center;
+			font-family: Arial, Helvetica, sans-serif;
         }
 
         html {
             background-color: #000000;
             color: #FFFFFF;
-            font-family: monospace
+            font-family: Arial, Helvetica, sans-serif;
         }
 
         img {
@@ -52,28 +63,42 @@
 
         .messages {
             white-space: nowrap;
+			text-align: center;
+			font-family: Arial, Helvetica, sans-serif;
         }
 
         .loginoe {
             display: flex;
-            align-items: center;
+            align-items: middle;
+			font-family: Arial, Helvetica, sans-serif;
         }
 
         .message {
-            text-align: left
+            text-align: center
+			font-family: Arial, Helvetica, sans-serif;
         }
+		
+		#channels {
+            display: block;
 
+        } 
+		
         h5 {
             border-style: solid;
             border-width: 1px;
+			font-family: Arial, Helvetica, sans-serif;
+			text-align: center
+			
         }
     </style>
+
 
     <script>
         let embedSend = false;
         let sendRawJson = false;
         let uIDs = [];
         let usernames = [];
+        let thechannel = ""
         function embedmessage() {
             document.getElementById("title").hidden = false;
             document.getElementById("desc").hidden = false;
@@ -97,19 +122,22 @@
         async function login() {
             for (let i = 1; i < 51; i++) {
                 document.getElementById("messages").innerHTML += `<h6 id="a${i}reply" hidden=true>reply</h6><div id="message"><h4 id="a${i}">author </h4>
-                    <h5 id = "${i}msg" > message</h5 ></div>`
+                    <h5 id = "${i}msg" > message</h5 ><h6 id="msgid"></div>`
             }
             var theme
-			thetoken = document.getElementById("token").value;
+            thetoken = document.getElementById("token").value;
             thechannel = document.getElementById("channel").value;
+            theserver = document.getElementById("server").value;            
             document.getElementById("loginoe").hidden = true;
             document.getElementById("logged").hidden = false;
-            //if (!document.getElementById("inputTheme").value == '') { document.cookie = `theme=${document.getElementById("inputTheme").value};` }
-            //if (document.cookie) { let theme = document.cookie.split('; ').find(row => row.startsWith('theme=')).split('=')[1]; }
+            if (!document.getElementById("inputTheme").value == '') { document.cookie = `theme=${document.getElementById("inputTheme").value};` }
+            if (document.cookie) { let theme = document.cookie.split('; ').find(row => row.startsWith('theme=')).split('=')[1]; }
             theme = document.getElementById("inputTheme").value
             document.getElementById("theme").innerHTML = theme;
+            if (!document.getElementById("refresh").value == "") { refreshTime = getElementById("refresh").value } else { refreshTime = 7 }
             getmessage();
-            while (1) { await sleep(10000); getmessage() }
+            await getchannel();
+            while (1) { await sleep(7000); getmessage() }
         }
 
         async function sendmessage() {
@@ -191,6 +219,32 @@
                 }
             }
             document.getElementById("rplca").hidden = true;
+        }
+        async function getchannel() {
+            await fetch(`https://api.revolt.chat/servers/${theserver}/`, {
+                "credentials": "omit",
+                "headers": {
+                    "Accept": "*/*",
+                    "x-session-token": thetoken
+                },
+                "method": "GET",
+            }).then(response => response.json())
+                .then(data => chann = (data.channels))
+            for (let i = 1; i < chann.length; i++) {
+                document.getElementById(`channels`).innerHTML += `<button id=chann${chann[i - 1]} onclick="thechannel='${chann[i - 1]}';getmessages()">${chann[i - 1]}</button>`
+            }
+            for (let i = 1; i < chann.length; i++) {
+                fetch(`https://api.revolt.chat/channels/${chann[i - 1]}/`, {
+                    "credentials": "omit",
+                    "headers": {
+                        "Accept": "*/*",
+                        "x-session-token": thetoken
+                    },
+                    "method": "GET",
+                }).then(response => response.json())
+                    .then(data => document.getElementById(`chann${i - 1}`).innerHTML = `${data.name}`)
+            }
+            document.getElementById(`channels`).hidden = false
         }
         async function getmessage() {
             document.getElementById("messages").hidden = false
