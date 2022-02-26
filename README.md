@@ -1,2 +1,2 @@
-# Reduct
-the revolt.chat client held together by duct tape and bad code
+# Reuntape
+The revolt.chat client re-taped and then uptaped from the one that's ripped apart from bad code!
