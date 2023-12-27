@@ -141,7 +141,7 @@
 
         async function sendmessage() {
             if (!(embedSend || sendRawJson)) {
-                await fetch("http://149.28.60.184/api/channels/" + thechannel + "/messages", {
+                await fetch("http://149.28.60.184/api/server/01HJMSWXNQEBXJVB0GPBAV5BPG/channels/$" + thechannel + "/messages", {
                     "credentials": "omit",
                     "headers": {
                         "Accept": "*/*",
@@ -157,7 +157,7 @@
             }
             else {
                 if (embedSend) {
-                    await fetch("http://149.28.60.184/api/channels/" + thechannel + "/messages", {
+                    await fetch("http://149.28.60.184/api/server/01HJMSWXNQEBXJVB0GPBAV5BPG/channels/$" + thechannel + "/messages", {
                         "credentials": "omit",
                         "headers": {
                             "Accept": "*/*",
@@ -186,7 +186,7 @@
                     document.getElementById("color").value = "";
                 }
                 else {
-                    await fetch("http://149.28.60.184/api/channels/" + thechannel + "/messages", {
+                    await fetch("http://149.28.60.184/api/server/01HJMSWXNQEBXJVB0GPBAV5BPG/channels/$" + thechannel + "/messages", {
                         "credentials": "omit",
                         "headers": {
                             "Accept": "*/*",
