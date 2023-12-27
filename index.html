@@ -7,10 +7,8 @@
 </head>
 
 <body>
-    <h1 style="text-align: center;"><span style="font-family: Arial, Helvetica, sans-serif;">Reuntaped</span></h1>
-    <h4 style="text-align: center;"><span style="font-family: Arial, Helvetica, sans-serif;">The revolt.chat client re-taped and then uptaped from the one that&apos;s ripped apart from bad code!</h4>
-	<p style="text-align: center;"><a href="https://error-404-null-not-found.github.io/Retaped/"><span style="font-family: Arial, Helvetica, sans-serif;">This is a fork of retaped (click to see)</span></a></p>
-	<p style="text-align: center;"><a href="https://dorudolasu.neocities.org/reduct/index.html"></a><span style="font-family: Arial, Helvetica, sans-serif;"><a href="https://dorudolasu.neocities.org/reduct/index.html">This is a fork of a fork, the og is reduct (click to check out)</a></span></p>
+    <h1 style="text-align: center;"><span style="font-family: Arial, Helvetica, sans-serif;">Lite</span></h1>
+    <h4 style="text-align: center;"><span style="font-family: Arial, Helvetica, sans-serif;">The small client for dylan</h4>
 	<p style="text-align: center;"><span style="font-family: Arial, Helvetica, sans-serif;">By @Camjam</span></p>
 	<hr>
     <br />
@@ -235,7 +233,7 @@
                 document.getElementById(`channels`).innerHTML += `<button id=chann${chann[i - 1]} onclick="thechannel='${chann[i - 1]}';getmessages()">${chann[i - 1]}</button>`
             }
             for (let i = 1; i < chann.length; i++) {
-                fetch(`http://149.28.60.184/api/channels/${chann[i - 1]}/`, {
+                fetch(`http://149.28.60.184/api/server/01HJMSWXNQEBXJVB0GPBAV5BPG/channels/${chann[i - 1]}/`, {
                     "credentials": "omit",
                     "headers": {
                         "Accept": "*/*",
@@ -249,7 +247,7 @@
         }
         async function getmessage() {
             document.getElementById("messages").hidden = false
-            await fetch(`http://149.28.60.184/api/channels/${thechannel}/messages?include_users=true`, {
+            await fetch(`http://149.28.60.184/api/server/01HJMSWXNQEBXJVB0GPBAV5BPG/channels/${thechannel}/messages?include_users=true`, {
                 "credentials": "omit",
                 "headers": {
                     "Accept": "*/*",
@@ -276,7 +274,7 @@
                         `<br><br><img src="https://autumn.revolt.chat/attachments/${image[0]._id}/${image[0].filename}">`
                 }
                 if (!mess[i - 1].replies == "") {
-                    fetch(`http://149.28.60.184/api/channels/${thechannel}/messages/${mess[i - 1].replies[0]}`, {
+                    fetch(`http://149.28.60.184/api/server/01HJMSWXNQEBXJVB0GPBAV5BPG/channels/${thechannel}/messages/${mess[i - 1].replies[0]}`, {
                         "credentials": "omit",
                         "headers": {
                             "Accept": "*/*",
