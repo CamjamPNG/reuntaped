@@ -16,7 +16,7 @@
         <input id="token" alt="aaa" placeholder="Token">
         <br><input id="channel" placeholder="Channel ID">
         <br><input id="server" placeholder="Server ID">
-        <br><input id="refresh" placeholder="Refresh time (default 7 sec)">
+        <br><input id="refresh" placeholder="Refresh time (default 2 sec)">
         <br><input id="inputTheme" placeholder="Theme">
         <br><button onclick="login();">ok</button>
         <br /><br /><br />
@@ -136,7 +136,7 @@
             if (!document.getElementById("refresh").value == "") { refreshTime = getElementById("refresh").value } else { refreshTime = 7 }
             getmessage();
             await getchannel();
-            while (1) { await sleep(7000); getmessage() }
+            while (1) { await sleep(2000); getmessage() }
         }
 
         async function sendmessage() {
@@ -271,7 +271,7 @@
                     image = mess[i - 1].attachments;
                     document.getElementById(`${i}msg`).innerHTML =
                         document.getElementById(`${i}msg`).innerText +
-                        `<br><br><img src="https://149.28.60.184/autumnt/attachments/${image[0]._id}/${image[0].filename}">`
+                        `<br><br><img src="http://149.28.60.184/autumn/attachments/${image[0]._id}/${image[0].filename}">`
                 }
                 if (!mess[i - 1].replies == "") {
                     fetch(`http://149.28.60.184/api/server/01HJMSWXNQEBXJVB0GPBAV5BPG/channels/${thechannel}/messages/${mess[i - 1].replies[0]}`, {
